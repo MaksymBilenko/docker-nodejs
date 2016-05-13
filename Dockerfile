@@ -7,9 +7,17 @@ ENV NODEMON false
 ENV APP_HOME /srv/git/repo
 ENV APP_MAIN bin/tty.js
 
+RUN apt-get update && apt-get install locales -y && apt-get clean
+
+ENV LANGUAGE en_GB.UTF-8
+ENV LANG en_GB.UTF-8
+RUN locale-gen en_GB.UTF-8
+RUN dpkg-reconfigure --frontend noninteractive locales
+
+
 RUN npm install -g nodemon
 
-RUN apt-get update && apt-get install asciinema -y && apt-get clean && rm -rf /tmp/* /var/lib/apt/lists/* /var/tmp/*
+RUN curl -sL https://asciinema.org/install | sh
 
 ADD entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
