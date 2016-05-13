@@ -9,5 +9,7 @@ ENV APP_MAIN bin/tty.js
 
 RUN npm install -g nodemon
 
+RUN apt-get update && apt-get install asciinema -y && apt-get clean && rm -rf /tmp/* /var/lib/apt/lists/* /var/tmp/*
+
 ADD entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
