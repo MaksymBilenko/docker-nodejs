@@ -14,10 +14,7 @@ ENV LANG en_GB.UTF-8
 RUN locale-gen en_GB.UTF-8
 RUN dpkg-reconfigure --frontend noninteractive locales
 
-
 RUN npm install -g nodemon
-
-RUN curl -sL https://asciinema.org/install | sh
 
 ADD entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
