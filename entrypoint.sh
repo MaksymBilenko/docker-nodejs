@@ -9,4 +9,10 @@ if [ $NODEMON == 'true' ]; then
 fi
 
 npm install
-$NODE_EXEC $APP_MAIN
+if [[ $1 == \-\-* ]]; then	
+	$NODE_EXEC $APP_MAIN "$@"
+elif [ $1 ]; then
+	exec "$@"
+else
+	$NODE_EXEC $APP_MAIN
+fi
